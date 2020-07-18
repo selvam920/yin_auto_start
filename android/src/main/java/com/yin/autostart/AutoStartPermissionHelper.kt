@@ -314,7 +314,15 @@ class AutoStartPermissionHelper private constructor() {
                 startIntent(context, PACKAGE_ONE_PLUS_MAIN, PACKAGE_ONE_PLUS_COMPONENT)
             } catch (e: Exception) {
                 e.printStackTrace()
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                Log.v("exception", "exception "+ context.packageName);
+
+                val uri: Uri = Uri.fromParts("package", context.packageName, null)
+                intent.data = uri
+                context.startActivity(intent)
                 return false
+
             }
         } else {
             return false
@@ -332,13 +340,6 @@ class AutoStartPermissionHelper private constructor() {
             context.startActivity(intent)
         } catch (exception: Exception) {
             exception.printStackTrace()
-            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            Log.v("exception", "exception "+ context.packageName);
-
-            val uri: Uri = Uri.fromParts("package", context.packageName, null)
-            intent.data = uri
-            context.startActivity(intent)
         }
     }
 
