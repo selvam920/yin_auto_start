@@ -7,6 +7,7 @@ import android.content.pm.ApplicationInfo
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import android.util.Log
 import androidx.core.content.ContextCompat.startActivity
 import sun.invoke.util.VerifyAccess.getPackageName
 import java.util.*
@@ -332,6 +333,9 @@ class AutoStartPermissionHelper private constructor() {
         } catch (exception: Exception) {
             exception.printStackTrace()
             val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            Log.v("exception", "exception "+ context.packageName);
+
             val uri: Uri = Uri.fromParts("package", context.packageName, null)
             intent.data = uri
             context.startActivity(intent)
