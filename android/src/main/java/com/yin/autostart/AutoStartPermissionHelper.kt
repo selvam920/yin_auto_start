@@ -4,8 +4,13 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
+import android.net.Uri
 import android.os.Build
+import android.provider.Settings
+import androidx.core.content.ContextCompat.startActivity
+import sun.invoke.util.VerifyAccess.getPackageName
 import java.util.*
+
 
 class AutoStartPermissionHelper private constructor() {
 
@@ -317,7 +322,7 @@ class AutoStartPermissionHelper private constructor() {
         return true
     }
 
-    @Throws(Exception::class)
+//    @Throws(Exception::class)
     private fun startIntent(context: Context, packageName: String, componentName: String) {
         try {
             val intent = Intent()
@@ -326,7 +331,10 @@ class AutoStartPermissionHelper private constructor() {
             context.startActivity(intent)
         } catch (exception: Exception) {
             exception.printStackTrace()
-            throw exception
+            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            val uri: Uri = Uri.fromParts("package", context.packageName, null)
+            intent.data = uri
+            context.startActivity(intent)
         }
     }
 
