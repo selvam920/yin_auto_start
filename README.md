@@ -9,7 +9,7 @@ step 1
 
     autostart:
      git:
-       url: git://github.com/peswanibros/yin_auto_start.git
+       url: git://github.com/finroly/yin_auto_start.git
 
 step 2
     
