@@ -6,7 +6,7 @@ homepage: https://github.com/yx544806988/yin_auto_start.git
 
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0-259.12.beta <3.0.0'
 
 dependencies:
   flutter:
