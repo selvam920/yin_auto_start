@@ -47,7 +47,7 @@ public class AutostartPlugin implements FlutterPlugin, MethodCallHandler {
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         String methodValue = call.method;
         if (methodValue.equals("isAutoStartPermissionAvailable")) {
-            result.success(AutoStartPermissionHelper.getInstance().isAutoStartPermissionAvailable(context));
+            result.success(AutoStartPermissionHelper.getInstance().isAutoStartPermissionAvailable(context!!));
         } else if (methodValue.equals("getAutoStartPermission")) {
             result.success(AutoStartPermissionHelper.getInstance().getAutoStartPermission(context));
         } else {

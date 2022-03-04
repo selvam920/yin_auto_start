@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:autostart/autostart.dart';
 
@@ -15,11 +14,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('auto start manage test'),
+          title: Text('auto start manage test'),
         ),
         body: Center(
-          child: GestureDetector(
-            onTap: () => checkAutoStartManager(context),
+          child: TextButton(
+            onPressed: () => checkAutoStartManager(context),
             child: Text('to auto start manager'),
           ),
         ),
@@ -28,8 +27,10 @@ class _MyAppState extends State<MyApp> {
   }
 
   void checkAutoStartManager(BuildContext context) async {
-    bool isAutoStartPermissionAvailable = await Autostart.isAutoStartPermissionAvailable;
-    if (isAutoStartPermissionAvailable) {
+    bool isAutoStartPermissionAvailable =
+        await Autostart.isAutoStartPermissionAvailable;
+    if (isAutoStartPermissionAvailable != null &&
+        isAutoStartPermissionAvailable) {
       print('test available ok');
       Autostart.getAutoStartPermission();
     } else {
